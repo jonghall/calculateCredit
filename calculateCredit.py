@@ -74,7 +74,7 @@ else:
     enddate=args.enddate
 
 if args.output == None:
-    outputname=input("Output filename: ")
+    outputname="calculateCredit.csv"
 else:
     outputname=args.output
 
