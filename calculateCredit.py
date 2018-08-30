@@ -30,9 +30,14 @@ def initializeSoftLayerAPI(user, key, configfile):
         else:
             filename="config.ini"
         config = configparser.ConfigParser()
-        config.read(filename)
-        client = SoftLayer.Client(username=config['api']['username'], api_key=config['api']['apikey'])
+        if os.path.exists(filename) == True:
+            config.read(filename)
+            client = SoftLayer.Client(username=config['api']['username'], api_key=config['api']['apikey'])
+        else:
+            # use configured SLCLI user/key
+            client = SoftLayer.Client()
     else:
+        # use user/key passed via command line
         client = SoftLayer.Client(username=user, api_key=key)
     return client
 
